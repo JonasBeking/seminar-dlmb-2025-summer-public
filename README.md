@@ -1,5 +1,5 @@
 # Seminar: Deep Learning for Molecular Biology materials
-Materials for the "Seminar: Deep Learning for Molecular Biology" on Winter 2024 at TU Braunschweig 
+Materials for the "Seminar: Deep Learning for Molecular Biology" on summer semester 2025 at TU Braunschweig 
 
 # Seminar information
 * For testing codes on GPU: use 
