@@ -35,6 +35,9 @@ def create_gene_datasets(prefix_data_folder, output_data_folder):
     # if os.path.exists(output_data_folder) and os.path.isdir(output_data_folder):
     #     shutil.rmtree(output_data_folder)
     os.makedirs(output_data_folder, exist_ok=True)
+    
+    
+        
 
 
     for ds_name, ds_values in data_files.items():
@@ -46,7 +49,7 @@ def create_gene_datasets(prefix_data_folder, output_data_folder):
             gene_sequences = {}
             for cur_record in SeqIO.parse(prefix_data_folder + ds_values[var_seq_name], "fasta"):
                 seq_name_gene = cur_record.name.split(';')[0]
-                seq_name, seq_gene = seq_name_gene.split('_')
+                seq_name, seq_gene = seq_name_gene.split('_')  
                 # print(seq_gene)
                 if seq_gene == '': continue
                 if seq_gene not in gene_sequences: gene_sequences[seq_gene] = {}
