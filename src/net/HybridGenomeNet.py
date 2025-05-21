@@ -34,19 +34,19 @@ class HybridGenomeNet(nn.Module):
         
         # Combined classifier
         self.classifier = nn.Sequential(
-            nn.Linear(64*(64//4)**2 + 32 + 1, 512),
+            nn.Linear(64*(64//4)**2 + 32, 512),
             nn.ReLU(),
-            nn.Dropout(0.5),
+            nn.Dropout(0.3),
             
             nn.Linear(512,32),
             nn.ReLU(),
-            nn.Dropout(0.5),
+            nn.Dropout(0.3),
             
             nn.Linear(32, num_classes)
         )
 
     def forward(self, x):
-        x_img, x_seq,x_gene = x
+        x_img, x_seq = x
         
         # Process image branch
         img_features = self.image_cnn(x_img)
@@ -55,5 +55,5 @@ class HybridGenomeNet(nn.Module):
         seq_features = self.seq_cnn(x_seq)
         
         # Combine features
-        combined = torch.cat([img_features, seq_features,x_gene], dim=1)
+        combined = torch.cat([img_features, seq_features], dim=1)
         return self.classifier(combined)
