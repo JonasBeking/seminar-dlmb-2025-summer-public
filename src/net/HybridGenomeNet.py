@@ -2,21 +2,21 @@ from torch import nn
 import torch
 
 class HybridGenomeNet(nn.Module):
-    def __init__(self, num_classes=2, seq_length=5000):
+    def __init__(self):
         super().__init__()
         
         # FCGR image branch
         self.image_cnn = nn.Sequential(
-            nn.Conv2d(1, 32, 3, padding=1),
+            nn.Conv2d(1, 32, 5, padding=2),
             nn.BatchNorm2d(32),
             nn.ReLU(),
             nn.MaxPool2d(2),
-            nn.Dropout(0.3),
+            nn.Dropout(0.5),
             nn.Conv2d(32, 64, 3, padding=1),
             nn.BatchNorm2d(64),
             nn.ReLU(),
             nn.MaxPool2d(2),
-            nn.Dropout(0.3),
+            nn.Dropout(0.5),
             nn.Flatten()
         )
         
@@ -26,13 +26,13 @@ class HybridGenomeNet(nn.Module):
             nn.BatchNorm1d(16),
             nn.ReLU(),
             nn.MaxPool1d(2),
-            nn.Dropout(0.3),
+            nn.Dropout(0.5),
             nn.Conv1d(16, 32, 5),
             nn.BatchNorm1d(32),
             nn.ReLU(),
             nn.MaxPool1d(2),
             nn.AdaptiveAvgPool1d(1),
-            nn.Dropout(0.3),
+            nn.Dropout(0.5),
             nn.Flatten()
         )
         
@@ -46,7 +46,7 @@ class HybridGenomeNet(nn.Module):
             nn.ReLU(),
             nn.Dropout(0.5),
             
-            nn.Linear(32, num_classes)
+            nn.Linear(32, 2)
         )
 
     def forward(self, x):
