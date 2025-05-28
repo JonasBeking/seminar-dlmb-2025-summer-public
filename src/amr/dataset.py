@@ -7,6 +7,20 @@ import torch
 from .amr_utility import load_gene_data
 import random
 
+class RandomRotate90:
+    def __call__(self, x):
+        angles = [0, 90, 180, 270]
+        angle = random.choice(angles)
+        return F.rotate(x, angle)
+    
+class AddUniformNoise:
+    def __init__(self, low=-0.05, high=0.05):
+        self.low = low
+        self.high = high
+
+    def __call__(self, tensor):
+        noise = torch.empty_like(tensor).uniform_(self.low, self.high)
+        return tensor + noise #torch.clamp(tensor + noise, 0.0, 1.0)
 
 class HybridGenomeDataset(Dataset):
     def __init__(
@@ -29,22 +43,20 @@ class HybridGenomeDataset(Dataset):
         self.labels = []
         self.genes = []
         
-        
-        
         for idx,gene in enumerate(genes):
             pathogens = load_gene_data(self.root_dir, pathogen, gene)
             self.sequences.extend([x[1] for x in pathogens[train_or_test]])
             self.labels.extend([x[2] for x in pathogens[train_or_test]])
             self.genes.extend([[idx + 1] for x in pathogens[train_or_test]])
         
-
-        
         self.max_seq_len = len(max(self.sequences, key=len))
         self.transform = transforms.Compose(
             [
                 transforms.ToTensor(),
-                transforms.Normalize((0.5,), (0.5,)),
+                RandomRotate90(),
+                #transforms.Normalize((0.5,), (0.5,)),
                 transforms.Resize((img_size, img_size), antialias=True),
+                AddUniformNoise(-0.05, 0.05),
             ]
         )
 
@@ -62,7 +74,7 @@ class HybridGenomeDataset(Dataset):
         fcgr.calculate(scalingFactor=0.5)
         matrix = fcgr.get_matrix
         img_data = np.log2(matrix + 1)
-        img_data = (img_data / img_data.max() * 255).astype(np.uint8)
+        img_data = (img_data / img_data.max() * 255).astype(np.float32)
         fcgr_image = self.transform(img_data)
 
         # Generate one-hot encoded sequence
