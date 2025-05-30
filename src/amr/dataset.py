@@ -53,10 +53,10 @@ class HybridGenomeDataset(Dataset):
         self.transform = transforms.Compose(
             [
                 transforms.ToTensor(),
-                RandomRotate90(),
+                #RandomRotate90(),
                 #transforms.Normalize((0.5,), (0.5,)),
                 transforms.Resize((img_size, img_size), antialias=True),
-                AddUniformNoise(-0.05, 0.05),
+                AddUniformNoise(-0.01, 0.01),
             ]
         )
 
@@ -73,6 +73,7 @@ class HybridGenomeDataset(Dataset):
         fcgr.set_sequence(seq)
         fcgr.calculate(scalingFactor=0.5)
         matrix = fcgr.get_matrix
+        
         img_data = np.log2(matrix + 1)
         img_data = (img_data / img_data.max() * 255).astype(np.float32)
         fcgr_image = self.transform(img_data)

@@ -5,9 +5,13 @@ class HybridGenomeNet(nn.Module):
     def __init__(self):
         super().__init__()
         
-        kernel_size = 3
+        kernel_size_staphy = 3
+        kernel_size_kleb = 3
+        kernel_size = kernel_size_staphy
         padding = int((kernel_size - 1) / 2)
         dropout = 0.5
+        
+        
         
         # FCGR image branch
         self.image_cnn = nn.Sequential(
