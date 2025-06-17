@@ -1,12 +1,33 @@
 from torch import nn
 import torch
-import math
 
-class HybridGenomeNet(nn.Module):
-    def __init__(self,dropout=0.5,kernel_size = 3,k=7):
+class Squeeze(nn.Module):
+    def __init__(self, dim=None):
+        super().__init__()
+        self.dim = dim
+
+    def forward(self, x):
+        return x.squeeze(dim=self.dim) if self.dim is not None else x.squeeze()
+    
+class Unsqueeze(nn.Module):
+    def __init__(self, dim):
+        super().__init__()
+        self.dim = dim
+
+    def forward(self, x):
+        return x.unsqueeze(dim=self.dim)
+
+class Full2dHybridGenomeNet(nn.Module):
+    def __init__(self):
         super().__init__()
         
+        kernel_size_staphy = 3
+        kernel_size_kleb = 3
+        kernel_size = kernel_size_staphy
         padding = int((kernel_size - 1) / 2)
+        dropout = 0.5
+        
+        
         
         # FCGR image branch
         self.image_cnn = nn.Sequential(
@@ -20,34 +41,29 @@ class HybridGenomeNet(nn.Module):
             nn.ReLU(),
             nn.MaxPool2d(2),
             nn.Dropout(dropout),
-            nn.Conv2d(64, 32, kernel_size, padding=padding),
-            nn.BatchNorm2d(32),
-            nn.ReLU(),
-            nn.MaxPool2d(4),
-            nn.Dropout(dropout),
             nn.Flatten()
         )
         
-        # Raw sequence branch
-        self.seq_cnn = nn.Sequential(
-            nn.Conv1d(4, 16, 5),
-            nn.BatchNorm1d(16),
+        self.first_seq_cnn = nn.Sequential(
+            Unsqueeze(1),
+            nn.Conv2d(1, 16, (4,16)),
+            nn.BatchNorm2d(16),
             nn.ReLU(),
+            Squeeze(-2),
             nn.MaxPool1d(2),
             nn.Dropout(dropout),
             nn.Conv1d(16, 32, 5),
             nn.BatchNorm1d(32),
             nn.ReLU(),
             nn.MaxPool1d(2),
-            nn.AdaptiveMaxPool1d(4),
+            nn.AdaptiveAvgPool1d(1),
             nn.Dropout(dropout),
             nn.Flatten()
         )
         
         # Combined classifier
-        classifier_base_size = int(math.pow(2,k) * math.pow(2,k - 3)) + 4 * 32
         self.classifier = nn.Sequential(
-            nn.Linear(classifier_base_size, 512),
+            nn.Linear(16416, 512),
             nn.ReLU(),
             nn.Dropout(dropout),
             
@@ -75,8 +91,9 @@ class HybridGenomeNet(nn.Module):
         #print(img_features.shape)
         
         # Process sequence branch
-        seq_features = self.seq_cnn(x_seq)
-        #print(seq_features.shape)
+        #x_seq = x_seq.unsqueeze(1)
+
+        seq_features = self.first_seq_cnn(x_seq)
         
         # Combine features
         combined = torch.cat([img_features, seq_features], dim=1)
