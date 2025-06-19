@@ -3,6 +3,7 @@ from typing import List, Tuple
 
 @dataclass
 class GeneModelConfig:
+    name: str = "default_config"
     k: int = 6 #K-Mers for the FCGR-Image
     pathogen: str = "Staphylococcus_aureus_cefoxitin"
     genes: List[str] = field(default_factory=lambda: [
@@ -10,7 +11,7 @@ class GeneModelConfig:
     ])
     root_dir: str = "../data/ds1"
     batch_size: int = 16
-    learning_rate: float = 0.01
+    learning_rate: float = 0.0001
     epochs: int = 200
     rareclasssampling: bool = True #Makes sure that rare classes are primarily sampled so that they occur more often than their distribution allows it
     weight_decay: float = 0.01 

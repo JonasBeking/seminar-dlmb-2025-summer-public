@@ -1,0 +1,24 @@
+{
+    "name": "grlA",
+    "k": 8,
+    "pathogen": "Staphylococcus_aureus_cefoxitin",
+    "genes": [
+        "grlA"
+    ],
+    "root_dir": "../data/ds1",
+    "batch_size": 16,
+    "learning_rate": 0.0001,
+    "epochs": 200,
+    "rareclasssampling": true,
+    "weight_decay": 0.01,
+    "trainvalsplit": 0.15,
+    "lossweighting": true,
+    "noise": [
+        0.0,
+        0.03
+    ],
+    "dropout": 0.0,
+    "rareclasssamplerreplacement": false,
+    "returnlowestvalloss": false,
+    "onlyfcgr": false
+}
