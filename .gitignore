@@ -1,2 +1,4 @@
 **/__pycache__/
 src/seminar-dlmb-2024-winter-public
+src/models/**/*
+src/results/**/*
