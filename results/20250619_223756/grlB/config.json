@@ -1,0 +1,24 @@
+{
+    "name": "grlB",
+    "k": 6,
+    "pathogen": "Staphylococcus_aureus_cefoxitin",
+    "genes": [
+        "grlB"
+    ],
+    "root_dir": "../data/ds1",
+    "batch_size": 16,
+    "learning_rate": 0.0001,
+    "epochs": 200,
+    "rareclasssampling": true,
+    "weight_decay": 0.01,
+    "trainvalsplit": 0.2,
+    "lossweighting": true,
+    "noise": [
+        0,
+        0
+    ],
+    "dropout": 0.2,
+    "rareclasssamplerreplacement": false,
+    "returnlowestvalloss": false,
+    "onlyfcgr": false
+}

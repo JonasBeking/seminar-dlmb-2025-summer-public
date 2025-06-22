@@ -1,17 +1,12 @@
-# Seminar: Deep Learning for Molecular Biology materials
-Materials for the "Seminar: Deep Learning for Molecular Biology" on summer semester 2025 at TU Braunschweig 
+# Seminar: Deep Learning for Molecular Biology materials - Approach with CNNs
+Our approach uses a HybridGenomeNet, as in:
+- one half of the network takes the One-Hot-Encoded DNA-Sequence
+- other half processes an FCGR-Representation of the DNA-Sequence
+In the end the results of both are combined in a linear bottleneck.
+The main training file resides in src: run_training.ipynb 
 
-# Seminar information
-* For testing codes on GPU: use 
-  * [Google colab](https://colab.research.google.com/), or
-  * [Kaggle code](https://www.kaggle.com/code)
+# Usage Information
+* For testing codes on online-GPU we sometimes used
+  * [Google colab](https://colab.research.google.com/)
 
-
-
-# Contents
-* [Notebook](src/intro_colab.ipynb)  for getting familiar with google colab and the data
-* [Notebook](src/load_data.ipynb) for loading the sample dataset and getting ready for the implementation task
-
-# References
-* [Seminar description on HZI website](https://www.helmholtz-hzi.de/en/research/research-groups/details/computational-biology-for-infection-research/#workshops)
-* [Kick-off meeting slides](DLS_TUBS_2025_summer_kick_off_meeting.pdf)
+Using a local machine is recommended because of the extended file-structure. Otherwise a flattening of the src folder 
