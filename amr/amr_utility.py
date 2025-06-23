@@ -1,9 +1,4 @@
-import numpy as np
-# import tqdm
-from Bio import SeqIO, Entrez
-#from Bio.Alphabet import generic_dna, generic_protein
-from Bio.Seq import Seq
-from Bio.SeqRecord import SeqRecord
+from Bio import SeqIO
 import os
 import shutil
 
@@ -31,9 +26,8 @@ def gene_with_high_incidence(gene_wc, wc):
 
 
 def create_gene_datasets(prefix_data_folder, output_data_folder):
-    # shutil.rmtree('../data/ds1')
-    # if os.path.exists(output_data_folder) and os.path.isdir(output_data_folder):
-    #     shutil.rmtree(output_data_folder)
+    if os.path.exists(output_data_folder) and os.path.isdir(output_data_folder):
+        shutil.rmtree(output_data_folder)
     os.makedirs(output_data_folder, exist_ok=True)
     
     

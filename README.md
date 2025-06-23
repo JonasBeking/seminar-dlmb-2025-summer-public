@@ -9,4 +9,5 @@ The main training file resides in src: run_training.ipynb
 * For testing codes on online-GPU we sometimes used
   * [Google colab](https://colab.research.google.com/)
 
-Using a local machine is recommended because of the extended file-structure. Otherwise a flattening of the src folder 
+Although, a local machine is recommended because of the extended file-structure and easier editing of the configs.
+
