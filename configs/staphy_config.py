@@ -20,13 +20,37 @@ grlB_config = GeneModelConfig(
     dropout=0.2,
 )
 gyrA_config = GeneModelConfig(
-    name="gyrA", genes=["gyrA"], dropout=0.7, noise=(0.0, 5.0), weight_decay=0.5,trainvalsplit=0.1
+    name="gyrA",
+    genes=["gyrA"],
+    dropout=0.7,
+    noise=(0.0, 5.0),
+    weight_decay=0.5,
+    trainvalsplit=0.1,
 )
-ileS_config = GeneModelConfig(name="ileS", genes=["ileS"])
+ileS_config = GeneModelConfig(
+    k=6,
+    name="ileS",
+    genes=["ileS"],
+    trainvalsplit=0.25,
+    dropout=0.5,
+    noise=(0.0, 0.0),
+    batch_size=121,
+    epochs=200,
+    learning_rate=0.0001,
+)
 pbp2_config = GeneModelConfig(name="pbp2", genes=["pbp2"])
 pbp4_promoter_config = GeneModelConfig(name="pbp4_promoter", genes=["pbp4-promoter"])
 pbp4_config = GeneModelConfig(
-    name="pbp4", learning_rate=0.01, genes=["pbp4"], trainvalsplit=0.2
+    batch_size=108,
+    rareclasssampling=True,
+    name="pbp4",
+    learning_rate=0.01,
+    genes=["pbp4"],
+    dropout=0.7,
+    trainvalsplit=0.2,
+    returnlowestvalloss=False,
+    rareclasssamplerreplacement=True,
+    lossweighting=False
 )
 rpoB_config = GeneModelConfig(name="rpoB", genes=["rpoB"])
 
