@@ -46,11 +46,11 @@ pbp4_config = GeneModelConfig(
     name="pbp4",
     learning_rate=0.01,
     genes=["pbp4"],
-    dropout=0.7,
+    dropout=0.3,
     trainvalsplit=0.2,
     returnlowestvalloss=False,
-    rareclasssamplerreplacement=True,
-    lossweighting=False
+    rareclasssamplerreplacement=False,
+    lossweighting=True
 )
 rpoB_config = GeneModelConfig(name="rpoB", genes=["rpoB"])
 
