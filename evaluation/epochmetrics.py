@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from typing import List
-
+import numpy as np
 
 @dataclass
 class EpochMetrics:
@@ -15,6 +15,8 @@ class EpochMetrics:
     train_loss: float = 0.0
     val_acc: float = 0.0
     val_loss: float = 0.0
+    test_roc_fpr : np.ndarray = np.ndarray([])
+    test_roc_tpr : np.ndarray = np.ndarray([])
 
     @property
     def train_tn(self) -> int:

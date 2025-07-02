@@ -17,5 +17,7 @@ class TrainingResults:
     val_fpr: List[float] = field(default_factory=list)
     test_loss: float = 0.0
     test_acc: float = 0.0
-    confusion_matrix: Any = None  # e.g., a 2D list or np.ndarray
-    config: GeneModelConfig = None  # GeneModelConfig or a dict, depending on use
+    confusion_matrix: Any = None
+    config: GeneModelConfig = None 
+    test_roc_fpr : np.ndarray = np.ndarray([])
+    test_roc_tpr : np.ndarray = np.ndarray([])

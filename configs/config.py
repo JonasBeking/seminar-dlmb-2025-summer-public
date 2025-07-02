@@ -49,3 +49,6 @@ class GeneModelConfig:
     onlyfcgr: bool = (
         False  # Uses only the FCGR-Image of the Gene-Sequence instead of FCGR-Image and the one-hot-encoded sequence
     )
+    onlysequence : bool = (
+        False
+    )
