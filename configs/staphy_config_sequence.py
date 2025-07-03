@@ -9,6 +9,7 @@ dfrB_config = GeneModelConfig(
     trainvalsplit=0.2,
     batch_size=64,
     learning_rate=0.001,
+    onlysequence=True
 )
 fusA_config = GeneModelConfig(
     name="fusA",
@@ -19,6 +20,7 @@ fusA_config = GeneModelConfig(
     trainvalsplit=0.2,
     batch_size=64,
     learning_rate=0.001,
+    onlysequence=True
 )
 grlA_config = GeneModelConfig(
     name="grlA",
@@ -29,6 +31,7 @@ grlA_config = GeneModelConfig(
     trainvalsplit=0.2,
     batch_size=64,
     learning_rate=0.001,
+    onlysequence=True
 )
 grlB_config = GeneModelConfig(
     name="grlB",
@@ -39,6 +42,7 @@ grlB_config = GeneModelConfig(
     trainvalsplit=0.2,
     batch_size=64,
     learning_rate=0.001,
+    onlysequence=True
 )
 gyrA_config = GeneModelConfig(
     name="gyrA",
@@ -49,6 +53,7 @@ gyrA_config = GeneModelConfig(
     trainvalsplit=0.2,
     batch_size=64,
     learning_rate=0.001,
+    onlysequence=True
 )
 ileS_config = GeneModelConfig(
     name="ileS",
@@ -59,6 +64,7 @@ ileS_config = GeneModelConfig(
     trainvalsplit=0.2,
     batch_size=64,
     learning_rate=0.001,
+    onlysequence=True
 )
 pbp2_config = GeneModelConfig(
     name="pbp2",
@@ -69,6 +75,7 @@ pbp2_config = GeneModelConfig(
     trainvalsplit=0.2,
     batch_size=64,
     learning_rate=0.001,
+    onlysequence=True
 )
 pbp4_promoter_config = GeneModelConfig(
     name="pbp4_promoter",
@@ -79,6 +86,7 @@ pbp4_promoter_config = GeneModelConfig(
     trainvalsplit=0.2,
     batch_size=64,
     learning_rate=0.001,
+    onlysequence=True
 )
 pbp4_config = GeneModelConfig(
     name="pbp4",
@@ -89,6 +97,7 @@ pbp4_config = GeneModelConfig(
     trainvalsplit=0.2,
     batch_size=64,
     learning_rate=0.001,
+    onlysequence=True
 )
 rpoB_config = GeneModelConfig(
     name="rpoB",
@@ -99,6 +108,7 @@ rpoB_config = GeneModelConfig(
     trainvalsplit=0.2,
     batch_size=64,
     learning_rate=0.001,
+    onlysequence=True
 )
 
 staphy_configs = [
