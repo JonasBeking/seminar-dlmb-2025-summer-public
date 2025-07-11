@@ -81,12 +81,9 @@ def get_train_val_dataloaders(config : GeneModelConfig):
     return train_loader,val_loader,class_weights_train
 
 def get_test_dataloader(config : GeneModelConfig):
-    
     test_dataset = HybridGenomeDataset(
         config=config,
         train_or_test="test"
     )
-    test_split_dataset = Subset(test_dataset, range(len(test_dataset)))
-    test_sampler,class_weights_train = get_random_sampler(test_split_dataset,replacement=True)
-    test_loader = get_dataloader(test_dataset, config.batch_size,sampler=test_sampler)
+    test_loader = DataLoader(test_dataset,batch_size=config.batch_size,collate_fn=hybrid_collate)
     return test_loader

@@ -24,11 +24,11 @@ class GeneModelConfig:
         ]
     )
     root_dir: str = "data/ds1"
-    batch_size: int = 16
+    batch_size: int = 64
     learning_rate: float = 0.0001
     epochs: int = 200
     rareclasssampling: bool = (
-        True  # Makes sure that rare classes are primarily sampled so that they occur more often than their distribution allows it
+        False  # Makes sure that rare classes are primarily sampled so that they occur more often than their distribution allows it
     )
     weight_decay: float = 0.01
     trainvalsplit: float = (
@@ -37,9 +37,9 @@ class GeneModelConfig:
     lossweighting: bool = True  # Loss is weighted according to class distribution
     noise: Tuple[float, float] = (
         0.00,
-        0.03,
+        0.15,
     )  # Noise minimum and maximum that is added to fcgr
-    dropout: float = 0.5
+    dropout: float = 0.1
     rareclasssamplerreplacement: bool = (
         False  # Rare classes can be drawn multiple times
     )

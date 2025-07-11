@@ -37,6 +37,7 @@ class HybridGenomeDataset(Dataset):
         self.transform = transforms.Compose(
             [
                 transforms.ToTensor(),
+                #transforms.Normalize(mean=[0.5], std=[0.5]),
                 AddUniformNoise(config.noise[0],config.noise[1]),
             ]
         )
@@ -56,6 +57,7 @@ class HybridGenomeDataset(Dataset):
 
         img_data: np.ndarray = np.log2(matrix + 1)
         img_data = (img_data / img_data.max() * 255).astype(np.float32)
+        img_data = matrix.astype(np.float32)
         fcgr_image: torch.Tensor = self.transform(img_data)
 
         # Generate one-hot encoded sequence

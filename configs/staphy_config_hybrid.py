@@ -3,66 +3,90 @@ from .config import GeneModelConfig
 dfrB_config = GeneModelConfig(
     name="dfrB",
     genes=["dfrB"],
-    dropout=0.1,
-    epochs=300,
-    weight_decay=0.01,
-    noise=(0.0, 2.0),
-    returnlowestvalloss=False,
+    dropout=0.15,
+    noise=(0,0.3),
+    batch_size=32,
+    learning_rate=0.0001
 )
-fusA_config = GeneModelConfig(name="fusA", genes=["fusA"], dropout=0.1,epochs=300,)
+fusA_config = GeneModelConfig(
+    name="fusA",
+    genes=["fusA"],
+    dropout=0.05,
+)
 grlA_config = GeneModelConfig(
     name="grlA",
     genes=["grlA"],
-    dropout=0.1,
-    noise=(0.0, 5.0),
-    epochs=300,
+    dropout=0.15,
+    noise=(0.0, 0.1),
+    batch_size=32,
+    learning_rate=0.001
 )
 grlB_config = GeneModelConfig(
     name="grlB",
     genes=["grlB"],
-    learning_rate=0.001,
-    noise=(0, 2.0),
-    dropout=0.25,
-    trainvalsplit=0.2,
-    batch_size=16,
-    epochs=300
+    learning_rate=0.0001,
+    noise=(0, 0.1),
+    dropout=0.2,
+    trainvalsplit=0.15,
+    batch_size=8
 )
 gyrA_config = GeneModelConfig(
     name="gyrA",
     genes=["gyrA"],
     dropout=0.1,
-    noise=(0.0, 0.0),
+    noise=(0.0, 0.01),
     weight_decay=0.2,
-    trainvalsplit=0.2,
-    epochs=300
+    trainvalsplit=0.2
 )
 ileS_config = GeneModelConfig(
     k=6,
     name="ileS",
     genes=["ileS"],
-    trainvalsplit=0.2,
-    dropout=0.1,
-    noise=(0.0, 0.0),
-    batch_size=32,
-    learning_rate=0.0001,
-    epochs=300,
-)
-pbp2_config = GeneModelConfig(name="pbp2", genes=["pbp2"],dropout=0.2,batch_size=64,trainvalsplit=0.25,epochs=300,learning_rate=0.001)
-pbp4_promoter_config = GeneModelConfig(name="pbp4_promoter", genes=["pbp4-promoter"],dropout=0.1,epochs=300)
-pbp4_config = GeneModelConfig(
-    batch_size=108,
-    rareclasssampling=True,
-    name="pbp4",
-    learning_rate=0.01,
-    genes=["pbp4"],
+    batch_size=64,
     dropout=0.3,
     trainvalsplit=0.2,
-    returnlowestvalloss=False,
-    rareclasssamplerreplacement=False,
-    lossweighting=True,
-    epochs=300
+    learning_rate=0.001,
+    noise=(0.00,0.01)
 )
-rpoB_config = GeneModelConfig(name="rpoB", genes=["rpoB"],dropout=0.1,epochs=300)
+pbp2_config = GeneModelConfig(
+    name="pbp2",
+    genes=["pbp2"],
+    dropout=0.4,
+    trainvalsplit=0.15,
+    learning_rate=0.001,
+    noise=(0.00,0.0),
+    weight_decay=0.05,
+    batch_size=32
+)
+pbp4_promoter_config = GeneModelConfig(
+    name="pbp4_promoter",
+    genes=["pbp4-promoter"],
+    trainvalsplit=0.15,
+    dropout=0.1,
+    learning_rate=0.0001,
+    weight_decay=0.9,
+    noise=(0.00,3.0),
+    batch_size=16
+)
+pbp4_config = GeneModelConfig(
+    name="pbp4",
+    genes=["pbp4"],
+    batch_size=114,
+    rareclasssampling=False,
+    learning_rate=0.0001,
+    dropout=0.1,
+    noise=(0, 0.15),
+    trainvalsplit=0.15,
+)
+rpoB_config = GeneModelConfig(
+    name="rpoB",
+    genes=["rpoB"],
+    batch_size=32,
+    learning_rate=0.001,
+    dropout=0.3,
+    noise=(0, 0),
+    trainvalsplit=0.15,
+)
 
 staphy_configs = [
     dfrB_config,
